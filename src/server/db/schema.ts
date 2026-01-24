@@ -8,11 +8,9 @@ import {
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
-// Enums
 export const messageRoleEnum = pgEnum("MessageRole", ["USER", "ASSISTANT"]);
 export const typeEnum = pgEnum("Type", ["RESULT", "ERROR"]);
 
-// Tables
 export const projects = pgTable("Project", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull(),
