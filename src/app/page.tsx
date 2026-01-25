@@ -1,18 +1,54 @@
-import { getSession } from "~/server/better-auth/server";
-import { api, HydrateClient } from "~/trpc/server";
+"use client";
+import { Button } from "./_components/ui/button";
+import { Input } from "./_components/ui/input";
+import { api } from "~/trpc/react";
+import { useState } from "react";
+import { toast } from "sonner";
 
-export default async function Home() {
-  const session = await getSession();
+export default function Home() {
+  const [value, setValue] = useState("");
+  const projectId = "";
 
-  if (session) {
-    void api.post.getLatest.prefetch();
-  }
+  const { data: messages } = api.message.getMany.useQuery({
+    projectId,
+  });
+
+  const utils = api.useUtils();
+
+  const invoke = api.message.create.useMutation({
+    onSuccess: async () => {
+      toast.success("BG job started");
+      setValue("");
+      await utils.message.getMany.invalidate({ projectId });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
 
   return (
-    <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        Come on, Tars!
-      </main>
-    </HydrateClient>
+    <div className="space-y-4 p-8">
+      <p>test</p>
+
+      <Input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Enter message..."
+      />
+
+      <Button
+        onClick={() => {
+          invoke.mutate({
+            value: value,
+            projectId,
+          });
+        }}
+        disabled={invoke.isPending || !value}
+      >
+        {invoke.isPending ? "Sending..." : "Click"}
+      </Button>
+
+      <pre>{JSON.stringify(messages, null, 2)}</pre>
+    </div>
   );
 }
