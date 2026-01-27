@@ -21,6 +21,7 @@ export const messageRouter = createTRPCRouter({
           type: "RESULT",
           projectId: input.projectId,
         })
+        // returns array of objects
         .returning();
 
       await inngest.send({
