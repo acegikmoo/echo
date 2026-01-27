@@ -6,7 +6,7 @@ import { generateSlug } from "random-word-slugs"
 import { inngest } from "~/server/inngest/client";
 import { TRPCError } from "@trpc/server";
 
-export const messageRouter = createTRPCRouter({
+export const projectRouter = createTRPCRouter({
   create: protectedProcedure
     .input(
       z.object(
