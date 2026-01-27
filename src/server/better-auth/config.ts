@@ -15,7 +15,9 @@ export const auth = betterAuth({
     github: {
       clientId: env.BETTER_AUTH_GITHUB_CLIENT_ID,
       clientSecret: env.BETTER_AUTH_GITHUB_CLIENT_SECRET,
-      redirectURI: "http://localhost:3000/api/auth/callback/github",
+      redirectURI: process.env.NODE_ENV === "production"
+        ? "https://your-production-domain.com/api/auth/callback/github"
+        : "http://localhost:3000/api/auth/callback/github",
     },
   },
 });
