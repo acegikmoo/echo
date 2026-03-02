@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
-import { db } from "~/server/db";
-import { messages, projects } from "~/server/db/schema";
+import { db } from "@/server/db";
+import { messages, projects } from "@/server/db/schema";
 import { generateSlug } from "random-word-slugs"
-import { inngest } from "~/server/inngest/client";
+import { inngest } from "@/server/inngest/client";
 import { TRPCError } from "@trpc/server";
 
 export const projectRouter = createTRPCRouter({

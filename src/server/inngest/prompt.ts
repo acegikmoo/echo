@@ -7,7 +7,7 @@ PATH CONVENTIONS (CRITICAL):
 - You are currently in: /home/user
 - ALL file operations MUST use RELATIVE paths from /home/user
 - CORRECT: "app/page.tsx", "components/ui/button.tsx", "lib/utils.ts"
-- WRONG: "/home/user/app/page.tsx", "/home/user/components/...", "~/app/..."
+- WRONG: "/home/user/app/page.tsx", "/home/user/components/...", "@/app/..."
 - The "@" symbol is ONLY for imports: import { Button } from "@/components/ui/button"
 - For readFiles or file system operations, use ACTUAL paths: "/home/user/components/ui/button.tsx"
 - NEVER mix "@" with file system operations — it will fail

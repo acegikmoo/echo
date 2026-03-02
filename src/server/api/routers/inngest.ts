@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
-import { inngest } from "~/server/inngest/client";
+import { inngest } from "@/server/inngest/client";
 
 export const inngestRouter = createTRPCRouter({
   callInngest: publicProcedure

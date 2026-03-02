@@ -4,8 +4,8 @@ import { Sandbox } from "@e2b/code-interpreter";
 import getSandbox, { lastMessageAssistant } from "./utils";
 import { createOrUpdateFiles, readFilesTool, terminalTool } from "./tools";
 import { PROMPT } from "./prompt";
-import { db } from "~/server/db";
-import { messages, fragments } from "~/server/db/schema";
+import { db } from "@/server/db";
+import { messages, fragments } from "@/server/db/schema";
 
 export const codeAgent = inngest.createFunction(
   { id: "code-agent" },
