@@ -66,3 +66,5 @@ export const fragmentsRelations = relations(fragments, ({ one }) => ({
     references: [messages.id],
   }),
 }));
+
+export * from "./auth-schema";
