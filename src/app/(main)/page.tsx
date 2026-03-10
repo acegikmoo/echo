@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarIcon, ArrowRight, FolderIcon } from "lucide-react";
 
 export default function Home() {
-  const { data: projects, isLoading } = api.project.getMany.useQuery();
+  const { data: projects, isLoading } = api.projects.getMany.useQuery();
 
   return (
     <div className="flex flex-col max-w-5xl mx-auto w-full">
