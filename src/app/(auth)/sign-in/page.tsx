@@ -49,16 +49,6 @@ export default function SignInPage() {
 
   return (
     <div className="dark min-h-screen relative flex items-center justify-center bg-background overflow-hidden">
-      <div
-        className="absolute inset-0 opacity-[0.4]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, oklch(1 0 0 / 0.08) 1px, transparent 0)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-
-      {/* Content */}
       <div className="relative z-10 w-full max-w-[420px] px-6">
         {/* Brand */}
         <div className="flex items-center justify-center gap-2.5 mb-10">
