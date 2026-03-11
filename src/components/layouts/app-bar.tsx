@@ -29,7 +29,7 @@ export const AppBar = () => {
             <span className="text-sm text-muted-foreground">
               {session.user.email}
             </span>
-            <Button variant="outline" size="sm" onClick={handleSignOut}>
+            <Button variant="outline" size="sm" className="cursor-pointer" onClick={handleSignOut}>
               Sign Out
             </Button>
           </div>

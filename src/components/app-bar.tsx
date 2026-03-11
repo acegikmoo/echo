@@ -27,7 +27,7 @@ export const AppBar = () => {
         {session ? (
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted-foreground">
-              {session.user.email}
+              {session.user.name}
             </span>
             <Button variant="outline" size="sm" onClick={handleSignOut}>
               Sign Out

@@ -80,11 +80,11 @@ export const ProjectForm = () => {
             </kbd>
             &nbsp; to submit
           </div>
-          <Button disabled={disabled} className={cn("w-4 h-4 rounded-full ")}>
+          <Button disabled={disabled} className={cn("w-10 h-10 rounded-sm bg-blue-500 hover:bg-blue-600 cursor-pointer")}>
             {isPending ? (
               <Loader2Icon className="h-4 w-4 animate-spin" />
             ) : (
-              <ArrowUpIcon />
+              <ArrowUpIcon className="h-4 w-4 stroke-[3]" />
             )}
           </Button>
         </div>

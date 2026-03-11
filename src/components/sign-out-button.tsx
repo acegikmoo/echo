@@ -1,6 +1,6 @@
 "use client";
 
-import { authClient} from "@/server/better-auth/client";
+import { authClient } from "@/server/better-auth/client";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
