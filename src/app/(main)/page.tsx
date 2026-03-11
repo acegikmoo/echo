@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarIcon, ArrowRight, FolderIcon } from "lucide-react";
+import { ProjectForm } from "@/components/project/project-form";
 
 export default function Home() {
   const { data: projects, isLoading } = api.projects.getMany.useQuery();
@@ -30,6 +31,10 @@ export default function Home() {
         <p className="text-lg md:text-xl text-muted-foreground text-center">
           Create anything, just with a simple prompt
         </p>
+
+        <div className="max-w-3xl mx-auto w-full">
+          <ProjectForm />
+        </div>
 
       </section>
 

@@ -22,15 +22,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <TRPCReactProvider>
-      <html lang="en" className={`${geist.variable}`}>
-        <body>
+    <html lang="en" className={`${geist.variable}`}>
+      <body>
+        <TRPCReactProvider>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
             {children}
             <Toaster />
           </ThemeProvider>
-        </body>
-      </html>
-    </TRPCReactProvider>
+        </TRPCReactProvider >
+      </body>
+    </html>
   );
 }
