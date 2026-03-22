@@ -21,7 +21,19 @@ Echo uses Gemini AI to generate full-stack code, runs it in an isolated E2B sand
 
 ## Tech Stack
 
-Next.js 15 · TypeScript · Tailwind CSS v4 · shadcn/ui · tRPC v11 · Drizzle ORM · PostgreSQL · Better Auth · Inngest · Gemini 2.0 Flash · E2B · TanStack Query v5
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4, shadcn/ui |
+| API | tRPC v11 |
+| ORM | Drizzle ORM |
+| Database | PostgreSQL (via `postgres` driver) |
+| Auth | Better Auth |
+| Background Jobs | Inngest |
+| AI | Gemini 2.0 Flash (via `@inngest/agent-kit`) |
+| Sandboxes | E2B Code Interpreter |
+| State | TanStack Query v5 |
 
 ---
 
@@ -47,7 +59,7 @@ npx inngest-cli@latest dev
 
 Copy `.env.example` to `.env` and fill in the values:
 ```env
-BETTER_AUTH_SECRET=           # Production only
+BETTER_AUTH_SECRET=           
 BETTER_AUTH_GITHUB_CLIENT_ID=
 BETTER_AUTH_GITHUB_CLIENT_SECRET=
 BETTER_AUTH_URL=http://localhost:3000
