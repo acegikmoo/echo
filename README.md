@@ -4,6 +4,7 @@ Turn a text prompt into a live, editable Next.js application — instantly.
 
 Echo uses Gemini AI to generate full-stack code, runs it in an isolated E2B sandbox, and streams a live preview back to you. Iterate with follow-up prompts until it's exactly what you want.
 
+## Demo
 ![Demo Screenshot](./public/demo.png)
 
 ---
