@@ -1,29 +1,99 @@
-# Create T3 App
+# Echo
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Turn a text prompt into a live, editable Next.js application — instantly.
 
-## What's next? How do I make an app with this?
+Echo uses Gemini AI to generate full-stack code, runs it in an isolated E2B sandbox, and streams a live preview back to you. Iterate with follow-up prompts until it's exactly what you want.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+---
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Features
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- Prompt → live website in seconds
+- Live preview with hot reload via E2B sandboxes
+- File tree explorer with syntax highlighting
+- Follow-up prompts for iterative refinement
+- Persistent projects and message history
+- GitHub OAuth + email/password authentication
 
-## Learn More
+---
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Tech Stack
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+Next.js 15 · TypeScript · Tailwind CSS v4 · shadcn/ui · tRPC v11 · Drizzle ORM · PostgreSQL · Better Auth · Inngest · Gemini 2.0 Flash · E2B · TanStack Query v5
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+---
 
-## How do I deploy this?
+## Getting Started
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+**Prerequisites:** Node.js 18+, Bun, PostgreSQL, E2B account, Google AI API key
+
+```bash
+git clone https://github.com/acegikmoo/echo.git
+cd echo
+bun install
+bun db:push
+bun dev
+```
+
+For background jobs, run the Inngest dev server in a separate terminal:
+
+```bash
+npx inngest-cli@latest dev
+```
+
+---
+
+## Environment Variables
+
+Copy `.env.example` to `.env` and fill in the values:
+
+```env
+BETTER_AUTH_SECRET=
+BETTER_AUTH_GITHUB_CLIENT_ID=
+BETTER_AUTH_GITHUB_CLIENT_SECRET=
+BETTER_AUTH_URL=http://localhost:3000
+
+DATABASE_URL=postgresql://postgres:password@localhost:5432/echo
+
+E2B_API_KEY=
+GOOGLE_API_KEY=
+```
+
+---
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── (auth)/          # Sign-in, sign-up
+│   ├── (main)/          # Dashboard, project view
+│   └── api/             # tRPC, Inngest, Auth handlers
+├── components/
+│   ├── ui/              # shadcn/ui primitives
+│   ├── fragments/       # Live preview, file explorer
+│   ├── messages/        # Chat UI
+│   └── project/         # Project form and layout
+└── server/
+    ├── api/             # tRPC routers
+    ├── better-auth/     # Auth config
+    ├── db/              # Drizzle schema and client
+    └── inngest/         # AI agent, tools, system prompt
+```
+
+---
+
+## Deployment
+
+Designed for **Vercel** + a managed PostgreSQL provider (Neon, Supabase).
+
+1. Set all environment variables in your Vercel project
+2. Update the GitHub OAuth redirect URI to your production domain
+3. Connect your production database and Inngest account
+4. Deploy
+
+---
+
+## License
+
+MIT
