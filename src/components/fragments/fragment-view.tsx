@@ -1,3 +1,5 @@
+"use client";
+
 import type { fragments } from "@/server/db/schema";
 import type { InferSelectModel } from "drizzle-orm";
 import { useState } from "react";
@@ -15,14 +17,12 @@ export const FragmentView = ({ data }: { data: Fragment }) => {
   function handleCopy() {
     navigator.clipboard.writeText(data.sandboxUrl);
     setCopied(true);
-    setTimeout(() => {
-      setCopied(false), 2000;
-    });
+    setTimeout(() => setCopied(false), 2000);
   }
 
   return (
-    <div className="flex flex-col w-full h-full">
-      <div className="p-2 border-b bg-sidebar flex items-center gap-x-2">
+    <div className="flex h-full w-full flex-col">
+      <div className="bg-sidebar flex items-center gap-x-2 border-b p-2">
         <Button size={"sm"} variant={"outline"} onClick={refresh}>
           <RefreshCcwIcon />
         </Button>
@@ -51,11 +51,11 @@ export const FragmentView = ({ data }: { data: Fragment }) => {
       </div>
       <iframe
         key={fragKey}
-        className="h-full w-full "
+        className="h-full w-full"
         sandbox="allow-forms allow-scripts allow-same-origin"
         loading="lazy"
         src={data.sandboxUrl}
       />
     </div>
   );
-}
+};

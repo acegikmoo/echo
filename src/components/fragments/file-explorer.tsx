@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback, useMemo, useState } from "react";
 import {
   ResizableHandle,
@@ -20,16 +22,19 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
   });
   const treeData = useMemo(() => {
     return convertFilesToTreeItems(files);
-  }, [files])
-
-  const handleFileSelect = useCallback((filepath: string) => {
-    if (files[filepath]) {
-      setSelectedFile(filepath);
-    }
   }, [files]);
 
+  const handleFileSelect = useCallback(
+    (filepath: string) => {
+      if (files[filepath]) {
+        setSelectedFile(filepath);
+      }
+    },
+    [files],
+  );
+
   return (
-    <ResizablePanelGroup direction="horizontal">
+    <ResizablePanelGroup orientation="horizontal">
       <ResizablePanel defaultSize={30} minSize={30} className="bg-sidebar">
         <TreeView
           data={treeData}
@@ -41,17 +46,16 @@ export const FileExplorer = ({ files }: FileExplorerProps) => {
       <ResizableHandle className="hover:bg-primary transition-colors" />
       <ResizablePanel defaultSize={70} minSize={30}>
         {selectedFile && files[selectedFile] ? (
-          <div className="h-full w-full flex flex-col">
-            <div className="flex-1 overflow-auto ">
+          <div className="flex h-full w-full flex-col">
+            <div className="flex-1 overflow-auto">
               <CodeView
                 code={files[selectedFile]}
                 lang={getLanguageFromFile(selectedFile)}
               />
             </div>
           </div>
-
         ) : (
-          <div className="flex h-full items-center justify-center text-muted-foreground">
+          <div className="text-muted-foreground flex h-full items-center justify-center">
             Select a file to view its components
           </div>
         )}

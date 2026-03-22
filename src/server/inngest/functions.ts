@@ -20,7 +20,7 @@ export const codeAgent = inngest.createFunction(
       name: "code-agent",
       description: "Expert, senior coding agent",
       system: PROMPT,
-      model: gemini({ model: "gemini-2.5-flash" }),
+      model: gemini({ model: "gemini-2.0-flash-lite", apiKey: process.env.GOOGLE_API_KEY }),
       tools: [
         terminalTool(sandboxId),
         createOrUpdateFiles(sandboxId),
@@ -42,7 +42,7 @@ export const codeAgent = inngest.createFunction(
     const network = createNetwork({
       name: "Coding agent network",
       agents: [coder],
-      maxIter: 5,
+      maxIter: 3,
       router: async ({ network }) => {
         const summary = network.state.data.summary;
         if (summary) {
@@ -61,10 +61,11 @@ export const codeAgent = inngest.createFunction(
     })
 
     const savedMessage = await step.run("save-result", async () => {
+  const summary = result.state.data.summary ?? "Here is your generated site.";
       const [newMessage] = await db
         .insert(messages)
         .values({
-          content: result.state.data.summary,
+          content: summary,
           role: "ASSISTANT",
           type: "RESULT",
           projectId: event.data.projectId,

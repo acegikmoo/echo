@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -9,36 +11,30 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
   DropdownMenuRadioGroup,
-  DropdownMenuRadioItem
+  DropdownMenuRadioItem,
 } from "../ui/dropdown-menu";
 
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { ChevronDown, ChevronLeft, SunMoonIcon } from "lucide-react";
 import Link from "next/link";
-import { } from "@radix-ui/react-dropdown-menu";
 import { useTheme } from "next-themes";
 import { api } from "@/trpc/react";
 
 export const ProjectHeader = ({ projectId }: { projectId: string }) => {
-
   const [project] = api.projects.getOne.useSuspenseQuery({ id: projectId });
 
   const { setTheme, theme } = useTheme();
   return (
-    <header className="p-2 flex justify-between items-center border-b">
+    <header className="flex items-center justify-between border-b p-2">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
             variant={"ghost"}
             size={"sm"}
-            className="focus-visible:ring-0 hover:bg-transparent hover:opacity-75 transition-opacity pl-2"
+            className="pl-2 transition-opacity hover:bg-transparent hover:opacity-75 focus-visible:ring-0"
           >
-            <Image src="/logo.svg"
-              alt="logo"
-              width={18}
-              height={18}
-            />
+            <Image src="/logo.svg" alt="logo" width={18} height={18} />
             <span className="text-sm font-medium">{project.name}</span>
             <ChevronDown />
           </Button>
@@ -47,21 +43,18 @@ export const ProjectHeader = ({ projectId }: { projectId: string }) => {
           <DropdownMenuItem asChild>
             <Link href="/">
               <ChevronLeft />
-              <span>
-                Go to dashboard
-              </span>
+              <span>Go to dashboard</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>
             <DropdownMenuSubTrigger className="gap-2">
-              <SunMoonIcon className="size-4 text-muted-foreground" />
+              <SunMoonIcon className="text-muted-foreground size-4" />
               <span>Theme</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}
-                >
+                <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
                   <DropdownMenuRadioItem value="light">
                     <span>Light</span>
                   </DropdownMenuRadioItem>
@@ -78,5 +71,5 @@ export const ProjectHeader = ({ projectId }: { projectId: string }) => {
         </DropdownMenuContent>
       </DropdownMenu>
     </header>
-  )
-}
+  );
+};

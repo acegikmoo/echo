@@ -24,9 +24,9 @@ export function terminalTool(sandboxId: string) {
           console.log("error", e);
           return `Command failed: ${e} \n stdout:${buffers.stdout} \n stderr: ${buffers.stderr}`;
         }
-      })
-    }
-  })
+      });
+    },
+  });
 }
 
 export function createOrUpdateFiles(sandboxId: string) {
@@ -38,7 +38,7 @@ export function createOrUpdateFiles(sandboxId: string) {
         z.object({
           path: z.string(),
           content: z.string(),
-        })
+        }),
       ),
     }),
     handler: async ({ files }, { step, network }) => {
@@ -74,7 +74,7 @@ export function readFilesTool(sandboxId: string) {
           const sandbox = getSandbox(sandboxId);
           const contents = [];
           for (const file of files) {
-            const content = (await sandbox).files.read(file);
+            const content = await (await sandbox).files.read(file);
             contents.push({ path: file, content });
           }
           return JSON.stringify(contents);

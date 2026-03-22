@@ -2,7 +2,11 @@
 import type { fragments } from "@/server/db/schema";
 import type { InferSelectModel } from "drizzle-orm";
 import { Suspense, useState } from "react";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../ui/resizable";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "../ui/resizable";
 import { ProjectHeader } from "../messages/message-header";
 import { MessageContainer } from "../messages/message-container";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
@@ -22,8 +26,12 @@ export const ProjectView = ({ projectId }: Props) => {
 
   return (
     <div className="h-screen">
-      <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel defaultSize={35} minSize={20} className="flex flex-col min-h-0">
+      <ResizablePanelGroup orientation="horizontal">
+        <ResizablePanel
+          defaultSize={35}
+          minSize={20}
+          className="flex min-h-0 flex-col"
+        >
           <ProjectHeader projectId={projectId} />
           <Suspense fallback={<p>Loading...</p>}>
             <MessageContainer
@@ -41,8 +49,8 @@ export const ProjectView = ({ projectId }: Props) => {
             value={tabState}
             onValueChange={(value) => setTabState(value as "preview" | "code")}
           >
-            <div className="w-full flex items-center p-2 border-b gap-x-2">
-              <TabsList className="h-8 p-0 border rounded-md">
+            <div className="flex w-full items-center gap-x-2 border-b p-2">
+              <TabsList className="h-8 rounded-md border p-0">
                 <TabsTrigger value="preview" className="rounded-md">
                   <EyeIcon />
                   <span>Demo</span>
@@ -57,7 +65,7 @@ export const ProjectView = ({ projectId }: Props) => {
               {activeFragment && <FragmentView data={activeFragment} />}
             </TabsContent>
             <TabsContent value="code" className="h-full min-h-0">
-              {activeFragment?.files && (
+              {!!activeFragment?.files && (
                 <FileExplorer
                   files={activeFragment.files as { [path: string]: string }}
                 />

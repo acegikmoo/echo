@@ -12,7 +12,11 @@ import {
   SidebarRail,
 } from "./ui/sidebar";
 import { ChevronRightIcon, FileIcon, FolderIcon } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./ui/collapsible";
 
 export const TreeView = ({
   data,
@@ -68,28 +72,24 @@ const Tree = ({
       <SidebarMenuButton
         isActive={isSelected}
         className="data-[active=true]:bg-transparent"
-        onClick={() => { onSelect?.(currentPath) }}
+        onClick={() => {
+          onSelect?.(currentPath);
+        }}
       >
         <FileIcon />
-        <span className="truncate">
-          {name}
-        </span>
+        <span className="truncate">{name}</span>
       </SidebarMenuButton>
-    )
+    );
   }
   //folder
   return (
     <SidebarMenuItem>
-      <Collapsible
-        className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90"
-      >
+      <Collapsible className="group/collapsible [&[data-state=open]>button>svg:first-child]:rotate-90">
         <CollapsibleTrigger asChild>
           <SidebarMenuButton>
             <ChevronRightIcon className="transition-transform" />
             <FolderIcon />
-            <span className="truncate">
-              {name}
-            </span>
+            <span className="truncate">{name}</span>
           </SidebarMenuButton>
         </CollapsibleTrigger>
         <CollapsibleContent>
@@ -107,5 +107,5 @@ const Tree = ({
         </CollapsibleContent>
       </Collapsible>
     </SidebarMenuItem>
-  )
+  );
 };
