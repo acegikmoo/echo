@@ -4,6 +4,8 @@ Turn a text prompt into a live, editable Next.js application — instantly.
 
 Echo uses Gemini AI to generate full-stack code, runs it in an isolated E2B sandbox, and streams a live preview back to you. Iterate with follow-up prompts until it's exactly what you want.
 
+![Demo Screenshot](./public/demo.png)
+
 ---
 
 ## Features
@@ -26,7 +28,6 @@ Next.js 15 · TypeScript · Tailwind CSS v4 · shadcn/ui · tRPC v11 · Drizzle 
 ## Getting Started
 
 **Prerequisites:** Node.js 18+, Bun, PostgreSQL, E2B account, Google AI API key
-
 ```bash
 git clone https://github.com/acegikmoo/echo.git
 cd echo
@@ -36,7 +37,6 @@ bun dev
 ```
 
 For background jobs, run the Inngest dev server in a separate terminal:
-
 ```bash
 npx inngest-cli@latest dev
 ```
@@ -46,9 +46,8 @@ npx inngest-cli@latest dev
 ## Environment Variables
 
 Copy `.env.example` to `.env` and fill in the values:
-
 ```env
-BETTER_AUTH_SECRET=
+BETTER_AUTH_SECRET=           # Production only
 BETTER_AUTH_GITHUB_CLIENT_ID=
 BETTER_AUTH_GITHUB_CLIENT_SECRET=
 BETTER_AUTH_URL=http://localhost:3000
@@ -62,7 +61,6 @@ GOOGLE_API_KEY=
 ---
 
 ## Project Structure
-
 ```
 src/
 ├── app/
@@ -91,6 +89,16 @@ Designed for **Vercel** + a managed PostgreSQL provider (Neon, Supabase).
 2. Update the GitHub OAuth redirect URI to your production domain
 3. Connect your production database and Inngest account
 4. Deploy
+
+---
+
+## Roadmap
+
+- Export project as ZIP
+- One-click deploy to Vercel
+- Version history per project
+- Team collaboration
+- Usage limits and billing
 
 ---
 
